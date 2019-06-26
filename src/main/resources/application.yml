@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: dev
+
+  thymeleaf:
+    cache: false        # 禁用缓存
+    mode: LEGACYHTML5   # 非严格型检查 默认是html 严格检查
+
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.bootdo.domain
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    com.bootdo.mapper: DEBUG
