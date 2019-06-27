@@ -47,7 +47,8 @@ public class LoginController extends BaseController {
      */
     @GetMapping(value = {"/index"})
     public String index() {
-        UserDTO user = getUser();
+        //1. 查询用户拥有的菜单
+
         return "index";
     }
 
