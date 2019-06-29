@@ -1,15 +1,19 @@
 package com.bootdo.realm;
 
 import com.bootdo.common.enums.UserEnum;
-import com.bootdo.domain.dto.UserDTO;
-import com.bootdo.domain.query.UserVOQuery;
-import com.bootdo.mapper.UserMapper;
+import com.bootdo.common.util.ShiroUtil;
+import com.bootdo.domain.system.dto.UserDTO;
+import com.bootdo.domain.system.query.UserVOQuery;
+import com.bootdo.mapper.system.UserMapper;
+import com.bootdo.service.system.MenuService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @Author: lihq
@@ -21,6 +25,8 @@ public class UserRealm extends AuthorizingRealm {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private MenuService menuService;
     /**
      * 认证
      * @param token
@@ -66,7 +72,11 @@ public class UserRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        return null;
+        Long userId = ShiroUtil.getUserId();
+        Set<String> perms = menuService.listPerms(userId);
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        info.setStringPermissions(perms);
+        return info;
     }
 
 

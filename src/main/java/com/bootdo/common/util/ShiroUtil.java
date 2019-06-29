@@ -1,6 +1,6 @@
 package com.bootdo.common.util;
 
-import com.bootdo.domain.dto.UserDTO;
+import com.bootdo.domain.system.dto.UserDTO;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 

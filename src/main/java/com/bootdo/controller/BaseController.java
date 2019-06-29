@@ -1,7 +1,7 @@
 package com.bootdo.controller;
 
 import com.bootdo.common.util.ShiroUtil;
-import com.bootdo.domain.dto.UserDTO;
+import com.bootdo.domain.system.dto.UserDTO;
 
 /**
  * @Author: lihq

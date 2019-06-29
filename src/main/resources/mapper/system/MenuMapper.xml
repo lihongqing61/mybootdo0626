@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.mapper.system.MenuMapper">
+
+    <sql id="base_where">
+        <where>
+            <if test="username != null and username != ''">and username = #{username}</if>
+            <if test="name != null and name != ''">and name = #{name}</if>
+            <if test="password != null and password != ''">and password = #{password}</if>
+            <if test="email != null and email != ''">and email = #{email}</if>
+            <if test="mobile != null and mobile != ''">and mobile = #{mobile}</if>
+            <if test="status != null and status != ''">and status = #{status}</if>
+            <if test="sex != null and sex != ''">and sex = #{sex}</if>
+            <if test="birth != null and birth != ''">and birth = #{birth}</if>
+            <if test="picId != null and picId != ''">and pic_id = #{picId}</if>
+            <if test="liveAddress != null and liveAddress != ''">and live_address = #{liveAddress}</if>
+            <if test="hobby != null and hobby != ''">and hobby = #{hobby}</if>
+        </where>
+</sql>
+
+    <select id="listMenuByUserId" parameterType="long" resultType="menuDTO">
+        SELECT
+            a.id,
+            a.parent_id,
+            a.`name`,
+            a.url,
+            a.perms,
+            a.type,
+            a.icon,
+            a.order_num,
+            a.create_id,
+            a.create_time,
+            a.update_id,
+            a.update_time
+        FROM
+            sys_menu a
+        LEFT JOIN sys_role_menu b ON a.id = b.menu_id
+        LEFT JOIN sys_role c ON b.role_id = c.id
+        LEFT JOIN sys_user_role d ON c.id = d.user_id
+        WHERE d.user_id = #{userId}
+        AND a.parent_id = #{parentId}
+        AND a.type IN (0, 1)
+        ORDER BY order_num
+        <!--
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                ORDER BY ${sort} ${order}
+            </when>
+            <otherwise>
+                ORDER BY a.create_time DESC
+            </otherwise>
+        </choose>
+        -->
+    </select>
+
+    <select id="listUserPerms" resultType="string">
+		SELECT DISTINCT m.perms
+		FROM sys_menu m
+		LEFT JOIN sys_role_menu rm
+		ON m.id = rm.menu_id
+		LEFT JOIN sys_user_role ur
+		ON rm.role_id = ur.role_id
+		WHERE ur.user_id = #{id}
+	</select>
+</mapper>

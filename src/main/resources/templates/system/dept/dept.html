@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<head th:include="include :: header"></head>
+<!-- gray-bg 浅灰色 -->
+<body class="gray-bg">
+<div class="wrapper wrapper-content">
+    <div class="col-sm-12">
+        <div class="ibox">
+            <div class="ibox-body">
+                <!-- 操作区 -->
+                <div class="fixed-table-toolbar">
+                    <button th:type="button" class="btn btn-primary" onclick="add(0);">
+                        <i class="fa fa-plus hidden" aria-hidden="true"></i>添加
+                    </button>
+                    <button th:type="button" class="btn btn-danger" onclick="batchRemove();">
+                        <i class="fa fa-trash" aria-hidden="true"></i>删除
+                    </button>
+                </div>
+
+                <!-- 查询区 -->
+                <div class="columns pull-right">
+                    <button class="btn btn-success" onclick="reLoad();">查询</button>
+                </div>
+
+                <div class="columns pull-right col-md-2 nopadding">
+                    <input id="searchName" th:type="text" class="form-control" placeholder="">
+                </div>
+
+                <!-- 数据展示区 -->
+                <table id="dataTable" data-mobile-responsive="true"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <script type="text/javascript">
+        var s_add_h = 'hidden';
+        var s_edit_h = 'hidden';
+        var s_remove_h = 'hidden';
+        var s_resetPwd_h = 'hidden';
+    </script>
+</div>
+<div th:include="include :: footer"></div>
+<script type="text/javascript" src="/js/appjs/system/dept/dept.js"></script>
+</body>
+</html>

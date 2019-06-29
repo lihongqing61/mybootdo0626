@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.mapper.system.DeptMapper">
+
+    <sql id="base_where">
+        <where>
+            a.del_flag = 1
+            <if test="name != null and name != ''">and name = #{name}</if>
+        </where>
+</sql>
+
+    <select id="list" parameterType="long" resultType="menuDTO">
+        SELECT
+            a.dept_id,
+            a.parent_id,
+            a.`name`,
+            a.order_num,
+            a.del_flag
+        FROM
+            sys_dept a
+        <include refid="base_where"></include>
+        ORDER BY a.dept_id DESC
+    </select>
+
+</mapper>
