@@ -3,7 +3,6 @@ package com.bootdo.mapper.system;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.bootdo.domain.system.entity.DeptEntity;
 import com.bootdo.domain.system.vo.DeptVO;
-
 import java.util.List;
 
 /**

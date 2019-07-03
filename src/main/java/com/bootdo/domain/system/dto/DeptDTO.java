@@ -23,7 +23,7 @@ public class DeptDTO implements Serializable {
     /**
      *  id
      */
-    private Long deptId;
+    private Long id;
 
     /**
      *  parentId 上级部门ID，一级部门为0

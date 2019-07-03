@@ -25,7 +25,7 @@ public class DeptVOQuery extends Page<DeptVO> {
     /**
      *  id
      */
-    private Long deptId;
+    private Long id;
 
     /**
      *  parentId 上级部门ID，一级部门为0
@@ -46,4 +46,5 @@ public class DeptVOQuery extends Page<DeptVO> {
      *  是否删除  1：正常  0：已删除
      */
     private Integer delFlag;
+
 }

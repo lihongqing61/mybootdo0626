@@ -7,7 +7,6 @@ import com.bootdo.mapper.system.DeptMapper;
 import com.bootdo.service.system.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**

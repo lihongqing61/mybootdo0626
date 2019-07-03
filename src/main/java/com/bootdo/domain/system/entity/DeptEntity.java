@@ -29,7 +29,7 @@ public class DeptEntity implements Serializable {
      *  id
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Long deptId;
+    private Long id;
 
     /**
      *  parentId 上级部门ID，一级部门为0

@@ -12,6 +12,7 @@ mybatis-plus:
   type-aliases-package: com.bootdo.domain
   configuration:
     map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl   #打印SQL
 logging:
   level:
     com.bootdo.mapper: DEBUG
