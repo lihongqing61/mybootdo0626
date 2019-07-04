@@ -100,4 +100,20 @@ public class DeptController extends BaseController {
         }
         return prefix + "/edit";
     }
+
+    /**
+     *  修改部门
+     * @param entity 部门对象
+     * @return
+     */
+    @PostMapping("/update")
+    @ResponseBody
+    public Result update(DeptEntity entity) {
+        boolean result = deptService.updateById(entity);
+        if (result) {
+            return Result.ok();
+        } else {
+            return Result.error();
+        }
+    }
 }

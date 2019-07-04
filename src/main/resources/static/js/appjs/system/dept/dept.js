@@ -45,7 +45,7 @@ function add(pId) {
 };
 
 function reLoad() {
-    $('#dataTable').bootstrapTable('refresh');
+    load();
 }
 
 /**
