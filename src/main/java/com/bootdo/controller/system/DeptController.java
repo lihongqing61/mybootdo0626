@@ -1,5 +1,6 @@
 package com.bootdo.controller.system;
 
+import com.bootdo.common.constant.NumberConstant;
 import com.bootdo.common.util.PropertiesUtil;
 import com.bootdo.common.util.Result;
 import com.bootdo.controller.BaseController;
@@ -79,5 +80,24 @@ public class DeptController extends BaseController {
         } else {
             return Result.error();
         }
+    }
+
+    /**
+     * 跳转到部门修改页面
+     * @param id
+     * @param model
+     * @return
+     */
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") Long id, Model model) {
+        DeptEntity dept = deptService.getById(id);
+        model.addAttribute("dept", dept);
+        if (NumberConstant.NUMBER0.equals(dept.getParentId())) {
+            model.addAttribute("pName", PropertiesUtil.getValue("pName"));
+        } else {
+            DeptEntity parentDept = deptService.getById(dept.getParentId());
+            model.addAttribute("pName", parentDept.getName());
+        }
+        return prefix + "/edit";
     }
 }
