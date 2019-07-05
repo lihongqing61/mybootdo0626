@@ -116,4 +116,15 @@ public class DeptController extends BaseController {
             return Result.error();
         }
     }
+
+    /**
+     * 部门删除
+     * @param entity
+     * @return
+     */
+    @DeleteMapping("/delete")
+    @ResponseBody
+    public Result delete(DeptEntity entity) {
+        return deptService.delete(entity);
+    }
 }

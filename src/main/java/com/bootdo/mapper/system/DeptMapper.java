@@ -14,4 +14,6 @@ import java.util.List;
 public interface DeptMapper extends BaseMapper<DeptEntity> {
 
     List<DeptDTO> list(DeptVO vo);
+
+    Long count(DeptEntity entity);
 }

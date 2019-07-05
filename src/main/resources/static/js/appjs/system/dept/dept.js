@@ -62,3 +62,23 @@ function edit(id) {
         content: prefix + '/edit/' + id     // 跳转到新增页面接口
     });
 }
+
+function remove(id) {
+    layer.confirm('您确定要删除选择的记录?',
+        {btn: ['确定', '取消']},
+        function() {
+                $.ajax({
+                    url: prefix + "/delete/",
+                    type: "DELETE",
+                    data: {"id": id, "delFlag": 0},
+                    success : function(r) {
+                        if (r.code == 1) {
+                            layer.msg(r.msg);
+                            reLoad();
+                        } else {
+                            layer.msg(r.msg);
+                        }
+                    }
+                });
+        });
+}

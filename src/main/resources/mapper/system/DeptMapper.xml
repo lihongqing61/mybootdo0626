@@ -6,7 +6,15 @@
     <sql id="base_where">
         <where>
             a.del_flag = 1
-            <if test="name != null and name != ''">and name = #{name}</if>
+            <if test="name != null and name != ''">
+                AND name = #{name}
+            </if>
+            <if test="id != null and id != ''">
+                AND id = #{id}
+            </if>
+            <if test="parentId != null and parentId != ''">
+                AND parent_id = #{parentId}
+            </if>
         </where>
 </sql>
 
@@ -22,7 +30,13 @@
         FROM
             sys_dept a
         <include refid="base_where"></include>
-        ORDER BY a.id DESC
+        ORDER BY a.id, a.order_num
+    </select>
+
+    <select id="count" parameterType="deptEntity" resultType="long">
+        SELECT COUNT(*)
+        FROM sys_dept
+        WHERE parent_id = #{id}
     </select>
 
 </mapper>
