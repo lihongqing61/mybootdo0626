@@ -1,6 +1,8 @@
 package com.bootdo.service.system.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.bootdo.common.util.ConverterUtil;
+import com.bootdo.domain.system.dto.DeptDTO;
 import com.bootdo.domain.system.entity.DeptEntity;
 import com.bootdo.domain.system.vo.DeptVO;
 import com.bootdo.mapper.system.DeptMapper;
@@ -23,6 +25,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptEntity> impleme
 
     @Override
     public List<DeptVO> list(DeptVO vo) {
-        return deptMapper.list(vo);
+        List<DeptDTO> dtoList = deptMapper.list(vo);
+        return ConverterUtil.copyList(dtoList, DeptVO.class);
     }
 }

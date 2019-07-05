@@ -20,6 +20,7 @@ function load() {
         columns: [
             {title : '编号', field : 'id',  align : 'center', valign : 'center', checkbox : true},
             {title : '部门名称', field : 'name', align : 'center', valign : 'center'},
+            {title : '状态', field : 'statusValue', align : 'center', valign : 'center'},
             {title : '排序', field : 'orderNum',  align : 'center', valign : 'center'},
             {title : '操作', formatter: function (item, index) {
                 var a = '<a class="btn btn-primary btn-sm" href="#" mce_href="#" title="编辑" onclick="edit(\''+item.id+'\')"><i class="fa fa-edit"></i></a>';

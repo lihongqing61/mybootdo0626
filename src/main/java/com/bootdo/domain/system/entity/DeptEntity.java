@@ -47,6 +47,11 @@ public class DeptEntity implements Serializable {
     private Integer orderNum;
 
     /**
+     *  状态 1: 正常, 2: 禁用
+     */
+    private Integer status;
+
+    /**
      *  是否删除  1：正常  0：已删除
      */
     private Integer delFlag;

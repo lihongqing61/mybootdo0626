@@ -10,13 +10,15 @@
         </where>
 </sql>
 
-    <select id="list" parameterType="long" resultType="menuDTO">
+    <select id="list" parameterType="long" resultType="deptDTO">
         SELECT
             a.id,
             a.parent_id,
             a.`name`,
             a.order_num,
-            a.del_flag
+            a.status,
+            a.del_flag,
+            (SELECT value FROM sys_dict s WHERE type = 'A01' AND s.key = a.status) AS status_value
         FROM
             sys_dept a
         <include refid="base_where"></include>

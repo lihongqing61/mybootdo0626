@@ -38,21 +38,22 @@
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label">状态：</label>
-                            <div class="col-sm-8" th:if="${dept.delFlag eq 1}">
+                            <div class="col-sm-8" th:if="${dept.status eq 1}">
                                 <label class="radio-inline" >
-                                    <input type="radio" name="status" checked th:value="${dept.delFlag}" /> 正常
+                                    <input type="radio" name="status" checked th:value="${dept.status}" /> 正常
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="status" th:value="${dept.delFlag}" /> 禁用
+                                    <input type="radio" name="status" th:value="0"/> 禁用
                                 </label>
                             </div>
 
-                            <div class="col-sm-8" th:if="${dept.delFlag eq 0}">
+                            <div class="col-sm-8" th:if="${dept.status eq 0}">
                                 <label class="radio-inline" >
-                                    <input type="radio" name="status" th:value="${dept.delFlag}" /> 正常
+                                    <input type="radio" name="status" th:value="1"/> 正常
+
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="status" checked th:value="${dept.delFlag}" /> 禁用
+                                    <input type="radio" name="status" checked th:value="${dept.status}" /> 禁用
                                 </label>
                             </div>
                         </div>

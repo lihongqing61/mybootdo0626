@@ -41,7 +41,18 @@ public class DeptVO implements Serializable {
     private Integer orderNum;
 
     /**
+     *  状态 1: 正常, 2: 禁用
+     */
+    private Integer status;
+
+    /**
      *  是否删除  1：正常  0：已删除
      */
     private Integer delFlag;
+
+    /**
+     *  状态 字典翻译
+     */
+    private String statusValue;
+
 }
