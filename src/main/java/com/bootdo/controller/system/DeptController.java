@@ -1,5 +1,6 @@
 package com.bootdo.controller.system;
 
+import com.bootdo.common.constant.ControllerPrefix;
 import com.bootdo.common.constant.NumberConstant;
 import com.bootdo.common.util.PropertiesUtil;
 import com.bootdo.common.util.Result;
@@ -24,7 +25,6 @@ import java.util.List;
 @RequestMapping("/dept")
 public class DeptController extends BaseController {
 
-    private String prefix = "system/dept";
 
     @Autowired
     private DeptService deptService;
@@ -36,7 +36,7 @@ public class DeptController extends BaseController {
      */
     @GetMapping("/dept")
     public String sysDept() {
-        return prefix + "/dept";
+        return ControllerPrefix.DEPT_PREFIX + "/dept";
     }
 
     /**
@@ -65,7 +65,7 @@ public class DeptController extends BaseController {
         } else {
             model.addAttribute("pName", deptService.getById(pId).getName());
         }
-        return prefix + "/add";
+        return ControllerPrefix.DEPT_PREFIX + "/add";
     }
 
     /**
@@ -101,7 +101,7 @@ public class DeptController extends BaseController {
             DeptEntity parentDept = deptService.getById(dept.getParentId());
             model.addAttribute("pName", parentDept.getName());
         }
-        return prefix + "/edit";
+        return ControllerPrefix.DEPT_PREFIX + "/edit";
     }
 
     /**

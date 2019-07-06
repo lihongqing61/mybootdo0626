@@ -1,14 +1,16 @@
 package com.bootdo.service.system.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.bootdo.common.util.ConverterUtil;
 import com.bootdo.domain.system.dto.MenuDTO;
 import com.bootdo.domain.system.entity.MenuEntity;
+import com.bootdo.domain.system.query.MenuVOQuery;
+import com.bootdo.domain.system.vo.MenuVO;
 import com.bootdo.mapper.system.MenuMapper;
 import com.bootdo.service.system.MenuService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -47,5 +49,11 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, MenuEntity> impleme
             }
         }
         return permsSet;
+    }
+
+    @Override
+    public List<MenuVO> list(MenuVOQuery query) {
+        List<MenuDTO> menuDTOList = menuMapper.list(query);
+        return ConverterUtil.copyList(menuDTOList, MenuVO.class);
     }
 }

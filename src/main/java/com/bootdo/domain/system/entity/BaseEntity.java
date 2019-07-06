@@ -60,4 +60,24 @@ public class BaseEntity implements Serializable {
      * 是否已删除 1: 删除, 0: 未删除
      */
     private String delFlag;
+
+    /**
+     *  排序字段
+     */
+    private String sort;
+
+    /**
+     *  排序方式
+     */
+    private String order;
+
+    /**
+     *  开始
+     */
+    private Integer offset;
+
+    /**
+     *  页大小
+     */
+    private Integer limit;
 }

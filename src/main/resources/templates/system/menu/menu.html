@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content">
+        <div class="col-sm-12">
+            <div class="ibox">
+                <div class="ibox-body">
+                    <div id="exapmleToolbar" role="group" class="t-bar">
+                        <button shiro:hasPermission="system:menu:add" type="button" onclick="add(0);" class="btn btn-primary" title="在根节点添加菜单">
+                            <i class="fa fa-plus" aria-hidden="true"></i>添加
+                        </button>
+                        <button shiro:hasPermission="system:menu:batchRemove" type="button" onclick="batchRemove();" class="btn btn-danger" title="批量删除">
+                            <i class="fa fa-plus" aria-hidden="true"></i>删除
+                        </button>
+                    </div>
+
+                    <table id="dataTable" data-mobile-responsive="true"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <script type="text/javascript">
+            var s_add_h = 'hidden';
+            var s_edit_h = 'hidden';
+            var s_remove_h = 'hidden';
+            var s_resetPwd_h = 'hidden';
+        </script>
+    </div>
+
+    <div shiro:hasPermission="system:menu:add">
+        <script type="text/javascript">
+            s_add_h = '';
+        </script>
+    </div>
+    <div shiro:hasPermission="system:menu:edit">
+        <script type="text/javascript">
+            s_edit_h = '';
+        </script>
+    </div>
+    <div shiro:hasPermission="system:menu:remove">
+        <script type="text/javascript">
+            s_remove_h = '';
+        </script>
+    </div>
+
+<div th:include="include::footer"></div>
+<script src="/js/appjs/system/menu/menu.js"></script>
+</body>
+</html>
