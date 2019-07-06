@@ -8,6 +8,7 @@ import com.bootdo.domain.system.entity.DeptEntity;
 import com.bootdo.domain.system.vo.DeptVO;
 import com.bootdo.service.system.DeptService;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,6 +47,7 @@ public class DeptController extends BaseController {
     @ApiOperation(value="获取部门列表", notes="")
     @ResponseBody
     @GetMapping("/list")
+    @RequiresPermissions(value = "system:dept:list")
     public List<DeptVO> list(DeptVO vo) {
         return deptService.list(vo);
     }
@@ -73,6 +75,7 @@ public class DeptController extends BaseController {
      */
     @PostMapping("/save")
     @ResponseBody
+    @RequiresPermissions(value = "system:dept:add")
     public Result save(DeptEntity entity) {
         boolean result = deptService.save(entity);
         if (result) {
@@ -108,6 +111,7 @@ public class DeptController extends BaseController {
      */
     @PostMapping("/update")
     @ResponseBody
+    @RequiresPermissions(value = "system:dept:edit")
     public Result update(DeptEntity entity) {
         boolean result = deptService.updateById(entity);
         if (result) {
@@ -124,6 +128,7 @@ public class DeptController extends BaseController {
      */
     @DeleteMapping("/delete")
     @ResponseBody
+    @RequiresPermissions(value = "system:dept:remove")
     public Result delete(DeptEntity entity) {
         return deptService.delete(entity);
     }

@@ -23,11 +23,11 @@ function load() {
             {title : '状态', field : 'statusValue', align : 'center', valign : 'center'},
             {title : '排序', field : 'orderNum',  align : 'center', valign : 'center'},
             {title : '操作', formatter: function (item, index) {
-                var a = '<a class="btn btn-primary btn-sm" href="#" mce_href="#" title="编辑" onclick="edit(\''+item.id+'\')"><i class="fa fa-edit"></i></a>';
-                var b = ' <a class="btn btn-primary btn-sm" href="#" mce_href="#" title="增加下级" onclick="add(\''+item.id+'\')"><i class="fa fa-plus"></i></a>';
-                var c = ' <a class="btn btn-warning btn-sm" href="#" mce_href="#" title="删除" onclick="remove(\''+item.id+'\')"><i class="fa fa-remove"></i></a>';
-                var d = ' <a class="btn btn-success btn-sm＂href="#" mce_href="#" title="备用" onclick="resetPwd(\'' + item.deptId + '\')"><i class="fa fa-key"></i></a>';
-                return a + b + c;
+                var a = '<a class="btn btn-primary btn-sm '+s_edit_h+'" href="#" mce_href="#" title="编辑" onclick="edit(\''+item.id+'\')"><i class="fa fa-edit"></i></a>';
+                var b = ' <a class="btn btn-primary btn-sm '+s_add_h+'" href="#" mce_href="#" title="增加下级" onclick="add(\''+item.id+'\')"><i class="fa fa-plus"></i></a>';
+                var c = ' <a class="btn btn-warning btn-sm '+s_remove_h+'" href="#" mce_href="#" title="删除" onclick="remove(\''+item.id+'\')"><i class="fa fa-remove"></i></a>';
+                var d = ' <a class="btn btn-success btn-sm hidden" href="#" mce_href="#" title="备用" onclick="resetPwd(\'' + item.deptId + '\')"><i class="fa fa-key"></i></a>';
+                return a + b + c + d;
                 }}
         ]
 

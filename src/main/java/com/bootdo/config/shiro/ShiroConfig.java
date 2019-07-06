@@ -1,11 +1,16 @@
 package com.bootdo.config.shiro;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+import com.bootdo.common.constant.CommonConstant;
+import com.bootdo.config.redis.ShiroRedisCacheManager;
+import com.bootdo.config.redis.ShiroRedisManager;
 import com.bootdo.realm.UserRealm;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import java.util.HashMap;
@@ -19,6 +24,10 @@ import java.util.Map;
 @Configuration
 @Slf4j
 public class ShiroConfig {
+
+
+    @Value("${spring.cache.type}")
+    private String cacheType;
 
     /**
      * ShiroFilterFactoryBean 处理拦截资源文件问题。
@@ -87,6 +96,11 @@ public class ShiroConfig {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         //1. 设置realm
         securityManager.setRealm(userRealm());
+
+        //2. 设置缓存管理器
+        if (CommonConstant.CACHE_TYPE_REDIS.equals(cacheType)) {
+            securityManager.setCacheManager(redisCacheManager());
+        }
         return securityManager;
     }
 
@@ -112,5 +126,35 @@ public class ShiroConfig {
         AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
         advisor.setSecurityManager(securityManager);
         return advisor;
+    }
+
+    /**
+     *  为了在thymeleaf里使用shiro的标签的bean
+     * @return
+     */
+    @Bean
+    public ShiroDialect shiroDialect() {
+        return new ShiroDialect();
+    }
+
+    /**
+     * cacheManager 缓存 redis实现
+     * 使用的是shiro-redis开源插件
+     *
+     * @return
+     */
+    @Bean
+    public ShiroRedisCacheManager redisCacheManager() {
+        ShiroRedisCacheManager redisCacheManager = new ShiroRedisCacheManager();
+        redisCacheManager.setShiroRedisManager(shiroRedisManager());
+        return redisCacheManager;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public ShiroRedisManager shiroRedisManager() {
+        return new ShiroRedisManager();
     }
 }

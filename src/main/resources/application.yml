@@ -1,6 +1,8 @@
 spring:
   profiles:
     active: dev
+  cache:
+    type: redis
 
   thymeleaf:
     cache: false
